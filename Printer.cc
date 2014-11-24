@@ -11,7 +11,7 @@ enum Kind { Parent,
 			Student,
 			Vending,
 			Courier };
-Printer( unsigned int numStudents, unsigned int numVendingMachines, unsigned int numCouriers ): numStudents(numStudents),
+Printer::Printer( unsigned int numStudents, unsigned int numVendingMachines, unsigned int numCouriers ): numStudents(numStudents),
 																								numVendingMachines(numVendingMachines),
 																								numCouriers(numCouriers)
 {
@@ -45,42 +45,52 @@ cout << endl;
   }
 }	
 
-void print( Kind kind, char state ) {
+void Printer::print( Kind kind, char state ) {
 	switch (Kind) {
 		case Parent:
 			if (parent != "") {
 				flush();
 			}
+			if (state == 'F')
+				finish();
 			parent = convert(state);
 			break;
 		case WATCardOffice:
 			if (watcard != "") {
 				flush();
 			}
+			if (state == 'F')
+				finish();
 			watcard = convert(state);
 			break;
 		case NameServer:
 			if (nameServer != "") {
 				flush();
 			}
+			if (state == 'F')
+				finish();
 			nameServer = convert(state);
 			break;
 		case Truck:
 			if (truck != "") {
 				flush();
 			}
+			if (state == 'F')
+				finish();
 			truck = convert(state);
 			break;
 		case BottlingPlant:
 			if (plant != "") {
 				flush();
 			}
+			if (state == 'F')
+				finish();
 			plant = convert(state);
 			break;
 	}
 
 }
-void print( Kind kind, char state, int value1 ){
+void Printer::print( Kind kind, char state, int value1 ){
 	switch (Kind) {
 		case Parent:
 			if (parent != "") {
@@ -119,7 +129,7 @@ void print( Kind kind, char state, int value1 ){
 			break;
 	}
 }
-void print( Kind kind, char state, int value1, int value2 ) {
+void Printer::print( Kind kind, char state, int value1, int value2 ) {
 	switch (Kind) {
 		case Parent:
 			if (parent != "") {
@@ -168,27 +178,33 @@ void print( Kind kind, char state, int value1, int value2 ) {
 			break;
 	}
 }
-void print( Kind kind, unsigned int lid, char state ) {
+void Printer::print( Kind kind, unsigned int lid, char state ) {
 	switch (Kind) {
 		case Student:
 			if (studentBuffer[lid] != "")
 				flush();
+			if (state == 'F')
+				finish();
 			studentBuffer[lid] = convert(state);
 			break;
 		case Vending:
 			if (vendingMachineBuffer[lid] != "")
 				flush();
+			if (state == 'F')
+				finish();
 			vendingMachineBuffer[lid] = convert(state);
 			break;
 		case Courier:
 			if (courierBuffer[lid] != "")
 				flush();
+			if (state == 'F')
+				finish();
 			courierBuffer[lid] = convert(state);
 			break;
 		default:
 	}
 }
-void print( Kind kind, unsigned int lid, char state, int value1 ) {
+void Printer::print( Kind kind, unsigned int lid, char state, int value1 ) {
 	switch (Kind) {
 		case Student:
 			if (studentBuffer[lid] != "")
@@ -211,7 +227,7 @@ void print( Kind kind, unsigned int lid, char state, int value1 ) {
 		default:
 	}
 }
-void print( Kind kind, unsigned int lid, char state, int value1, int value2 ) {
+void Printer::print( Kind kind, unsigned int lid, char state, int value1, int value2 ) {
 	switch (Kind) {
 		case Student:
 			if (studentBuffer[lid] != "")
@@ -241,15 +257,34 @@ void print( Kind kind, unsigned int lid, char state, int value1, int value2 ) {
 	}
 }
 
-string convert(int i) {
+string Printer::convert(int i) {
   stringstream ss;
   ss << i;
   return ss.str();
 }
 
-string convert(char c) {
+string Printer::convert(char c) {
   stringstream ss;
   ss << c;
   return ss.str();
 }
+
+void Printer::finish() {
+	parent = "...";
+	watcard = "...";
+	nameServer = "...";
+	truck = "...";
+	plant = "...";
+	for (int i = 0 ; i < numStudents ; i++) {
+		studentBuffer[i] = "...";
+	}
+	for (int i = 0 ; i < numVendingMachines ; i++) {
+		vendingMachineBuffer[i] = "...";
+	}
+	for (int i = 0 ; i < numCouriers ; i++) {
+		courierBuffer[i] = "...";
+	}
+}
+
+
 

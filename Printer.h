@@ -8,6 +8,7 @@ Monitor Printer {
 	unsigned int numVendingMachines;
 	unsigned int numCouriers;
 	void flush();
+	void finish();
 	string convert(int i);
 	string convert(char c);
 
