@@ -165,7 +165,7 @@ void print( Kind kind, char state, int value1, int value2 ) {
 			plant += convert(value1);
 			plant += ",";
 			plant += convert(value2);
-			break;//
+			break;
 	}
 }
 void print( Kind kind, unsigned int lid, char state ) {
