@@ -16,12 +16,12 @@ void Parent::main() {
 	while (1) {
 		_Accept(~Parent) {
 			break;
-		} else {
+		} _Else {
 			unsigned int rId = generator(numStudents-1);
 			unsigned int rMoney = generator(1,3);
 			yield(parentalDelay);
-			bank.deposit(id, rMoney);
-			printer.print(Printer::Parent, 'D', id, rMoney);
+			bank.deposit(rId, rMoney);
+			printer.print(Printer::Parent, 'D', rId, rMoney);
 		}
 	}
 	printer.print(Printer::Parent, 'F');

@@ -5,12 +5,12 @@
 
 #include "MPRNG.h"
 #include "config.h"
-#include "printer.h"
-#include "bank.h"
-#include "parent.h"
-#include "watcard_office.h"
-#include "name_server.h"
-#include "vending_machine.h"
+#include "Printer.h"
+#include "Bank.h"
+#include "Parent.h"
+#include "Watcard.h"
+#include "NameServer.h"
+#include "VendingMachine.h"
 #include "bottling_plant.h"
 #include "student.h"
 
