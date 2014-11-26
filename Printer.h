@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Monitor Printer {
+_Monitor Printer {
 	unsigned int numStudents;
 	unsigned int numVendingMachines;
 	unsigned int numCouriers;
