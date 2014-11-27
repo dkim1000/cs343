@@ -2,6 +2,7 @@
 #define WATCARD_H
 
 class WATCard {
+	unsigned int balance;
     WATCard( const WATCard & );            // prevent copying
     WATCard &operator=( const WATCard & );
   public:
