@@ -1,16 +1,16 @@
 #include "Watcard.h"
 
-WATcard::WATCard() {
+WATCard::WATCard() {
 	balance = 0;
 }
 
-void WATcard::deposit( unsigned int amount ) {
+void WATCard::deposit( unsigned int amount ) {
 	balance += amount;
 }
-void WATcard::withdraw( unsigned int amount ) {
+void WATCard::withdraw( unsigned int amount ) {
 	balance -= amount;
 }
 
-unsigned int WATcard::getBalance() {
+unsigned int WATCard::getBalance() {
 	return balance;
 }
