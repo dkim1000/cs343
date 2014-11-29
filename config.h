@@ -1,6 +1,8 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+#define NUM_FLAVOURS  3
+
 struct ConfigParms {
     unsigned int sodaCost;                 // MSRP per bottle
     unsigned int numStudents;              // number of students to create
