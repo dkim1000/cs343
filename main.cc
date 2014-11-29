@@ -9,6 +9,7 @@
 #include "Bank.h"
 #include "Parent.h"
 #include "Watcard.h"
+#include "WatcardOffice.h"
 #include "NameServer.h"
 #include "VendingMachine.h"
 #include "bottling_plant.h"
