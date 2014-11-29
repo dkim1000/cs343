@@ -15,13 +15,34 @@ Printer::Printer( unsigned int numStudents, unsigned int numVendingMachines, uns
 																								numVendingMachines(numVendingMachines),
 																								numCouriers(numCouriers)
 {
+	cout << "Parent" << "\t";
+	cout << "WATOff" << "\t";
+	cout << "Names" << "\t";
+	cout << "Truck" << "\t";
+	cout << "Plant" << "\t";
+	for (unsigned int i = 0 ; i < numStudents ; i++) {
+		cout << "Stud" << i << "\t";
+	}
+	for (unsigned int i = 0 ; i < numVendingMachines ; i++) {
+		cout << "Mach" << i << "\t";
+	}
+	for (unsigned int i = 0 ; i < numCouriers ; i++) {
+		cout << "Cour" << i << "\t";
+	}
+	cout << endl;
 
+	for (unsigned int i = 0 ; i < 5 + numStudents + numVendingMachines + numCouriers; i++) {
+		cout << "*******" << "\t";
+	}
+	cout << endl;
 };
 
 Printer::~Printer() {
   flush();
   cout << "***********************" << endl;
-  delete [] buffer;
+  delete [] studentBuffer;
+  delete [] vendingMachineBuffer;
+  delete [] courierBuffer;
 }
 
 void Printer::flush() {
@@ -39,14 +60,11 @@ void Printer::flush() {
   for (int i = 0 ; i < numCouriers ; i++) {
   	cout << courierBuffer[i]<<"\t";
   }
-cout << endl;
-  for (int i = 0 ; i < voters ; i++) {
-    buffer[i] = "";
-  }
+  cout << endl;
 }	
 
 void Printer::print( Kind kind, char state ) {
-	switch (Kind) {
+	switch (kind) {
 		case Parent:
 			if (parent != "") {
 				flush();
@@ -91,7 +109,7 @@ void Printer::print( Kind kind, char state ) {
 
 }
 void Printer::print( Kind kind, char state, int value1 ){
-	switch (Kind) {
+	switch (kind) {
 		case Parent:
 			if (parent != "") {
 				flush();
@@ -130,7 +148,7 @@ void Printer::print( Kind kind, char state, int value1 ){
 	}
 }
 void Printer::print( Kind kind, char state, int value1, int value2 ) {
-	switch (Kind) {
+	switch (kind) {
 		case Parent:
 			if (parent != "") {
 				flush();
@@ -179,7 +197,7 @@ void Printer::print( Kind kind, char state, int value1, int value2 ) {
 	}
 }
 void Printer::print( Kind kind, unsigned int lid, char state ) {
-	switch (Kind) {
+	switch (kind) {
 		case Student:
 			if (studentBuffer[lid] != "")
 				flush();
@@ -201,11 +219,10 @@ void Printer::print( Kind kind, unsigned int lid, char state ) {
 				finish();
 			courierBuffer[lid] = convert(state);
 			break;
-		default:
 	}
 }
 void Printer::print( Kind kind, unsigned int lid, char state, int value1 ) {
-	switch (Kind) {
+	switch (kind) {
 		case Student:
 			if (studentBuffer[lid] != "")
 				flush();
@@ -224,11 +241,10 @@ void Printer::print( Kind kind, unsigned int lid, char state, int value1 ) {
 			courierBuffer[lid] = convert(state);
 			courierBuffer[lid] += convert(value1);
 			break;
-		default:
 	}
 }
 void Printer::print( Kind kind, unsigned int lid, char state, int value1, int value2 ) {
-	switch (Kind) {
+	switch (kind) {
 		case Student:
 			if (studentBuffer[lid] != "")
 				flush();
@@ -253,7 +269,6 @@ void Printer::print( Kind kind, unsigned int lid, char state, int value1, int va
 			courierBuffer[lid] += ",";
 			courierBuffer[lid] += convert(value2);
 			break;
-		default:
 	}
 }
 
