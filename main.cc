@@ -12,8 +12,8 @@
 #include "WatcardOffice.h"
 #include "NameServer.h"
 #include "VendingMachine.h"
-#include "bottling_plant.h"
-#include "student.h"
+#include "BottlingPlant.h"
+#include "Student.h"
 
 using namespace std;
 MPRNG mprng;
@@ -38,7 +38,7 @@ void uMain::main() {
     int seed = getpid();			// random seed
     
     if ( argc > 3 ) {
-    Error: printError(argv);
+    Error: printError( argv[0] );
     }
 
     if ( argc >= 2 ) {				
@@ -51,8 +51,8 @@ void uMain::main() {
     mprng.seed(seed);				// randomize with seed
     
     ConfigParms parms;
-    void processConfigFile( fileName, cparms );
-    Printer prt( parms.numStudents, parms.numVendingMachines, parms.numCourier );
+    processConfigFile( fileName.c_str() , parms );
+    Printer prt( parms.numStudents, parms.numVendingMachines, parms.numCouriers );
     Bank bank( parms.numStudents );
     Parent parent( prt, bank, parms.numStudents, parms.parentalDelay );
     WATCardOffice cardOffice ( prt, bank, parms.numCouriers );

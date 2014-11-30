@@ -1,9 +1,8 @@
 #ifndef NAME_SERVER_H
 #define NAME_SERVER_H
-#include "Printer.h"
-#include "vending_machine.h"
 
-_Monitor Printer;
+#include "Printer.h"
+
 _Task VendingMachine;
 
 _Task NameServer {
@@ -17,7 +16,7 @@ _Task NameServer {
 
     void main();
   public:
-  	~NameServer();
+    ~NameServer();
     NameServer( Printer &prt, unsigned int numVendingMachines, unsigned int numStudents );
     void VMregister( VendingMachine *vendingmachine );
     VendingMachine *getMachine( unsigned int id );

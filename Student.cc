@@ -19,9 +19,9 @@ Student::Student( Printer &prt, NameServer &nameServer, WATCardOffice &cardOffic
 void Student::main() {
     printer.print( Printer::Student, id, 'S', favFlavour, numPurchase );
     
-    FWATCard watcard = cardOffice.create( id, WATCARD_INITIAL_BALANCE );
+    WATCard::FWATCard watcard = cardOffice.create( id, WATCARD_INITIAL_BALANCE );
     
-    VendingMachine *vm = nameserver.getMachine( id );
+    VendingMachine *vm = nameServer.getMachine( id );
     printer.print( Printer::Student, id, 'V', vm->getId() );
     
     for ( unsigned int i = 0; i < numPurchase; i += 1 ) {
@@ -31,22 +31,22 @@ void Student::main() {
 	// try buying a soda. Exits infinite loop only after a successful buy
 	while ( 1 ) {
 	    try {
-		vm->buy( (VendingMachine::Flavours)favFlavour, *watcard );
-		printer.print( Printer::Student, id, 'B', watcard() );
+		vm->buy( (VendingMachine::Flavours)favFlavour, *watcard() );
+		printer.print( Printer::Student, id, 'B', watcard()->getBalance() );
 		break;
-	    } catch ( _Event e ) {
-		switch (e) {
-		case VendingMachine::Stock: // out of stock; try another vending machine
-		    vm = nameServer.getMachine(id);
-		    printer.print( Printer::Student, id, 'V', vm->getId() );
-		    continue;
-		case VendingMachine::Funds: // out of funds; transfer money
-		    watcard = cardOffice.transfer( id, WATCARD_INITIAL_BALANCE + vm->cost(), watcard() );
-		    continue;
-		case WATCardOffice::Lost:   // lost card; create new one
-		    printer.print( 
-		    break;
-		}
+	    } catch ( VendingMachine::Stock ) {
+		vm = nameServer.getMachine(id);
+		printer.print( Printer::Student, id, 'V', vm->getId() );
+		continue;
+	    } catch ( VendingMachine::Funds ) {
+		watcard = cardOffice.transfer( id, WATCARD_INITIAL_BALANCE + vm->cost(), watcard() );
+		continue;
+
+	    } catch ( WATCardOffice::Lost ) {
+		printer.print( Printer::Student, id, 'L');
+		watcard = cardOffice.create( id, WATCARD_INITIAL_BALANCE );
+		continue;
+
 	    }
 
 	}

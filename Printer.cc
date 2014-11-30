@@ -51,13 +51,13 @@ void Printer::flush() {
 	cout << nameServer << "\t";
 	cout << truck << "\t";
 	cout << plant << "\t";
-  for (int i = 0 ; i < numStudents ; i++) {
+  for (unsigned int i = 0 ; i < numStudents ; i++) {
     cout << studentBuffer[i]<<"\t";
   }
-  for (int i = 0 ; i < numVendingMachines ; i++) {
+  for (unsigned int i = 0 ; i < numVendingMachines ; i++) {
   	cout << vendingMachineBuffer[i]<<"\t";
   }
-  for (int i = 0 ; i < numCouriers ; i++) {
+  for (unsigned int i = 0 ; i < numCouriers ; i++) {
   	cout << courierBuffer[i]<<"\t";
   }
   cout << endl;
@@ -102,9 +102,11 @@ void Printer::print( Kind kind, char state ) {
 				flush();
 			}
 			if (state == 'F')
-				finish();
+			    finish();
 			plant = convert(state);
 			break;
+	default:
+	    break;
 	}
 
 }
@@ -145,6 +147,8 @@ void Printer::print( Kind kind, char state, int value1 ){
 			plant = convert(state);
 			plant += convert(value1);
 			break;
+	default:
+	    break;
 	}
 }
 void Printer::print( Kind kind, char state, int value1, int value2 ) {
@@ -194,6 +198,8 @@ void Printer::print( Kind kind, char state, int value1, int value2 ) {
 			plant += ",";
 			plant += convert(value2);
 			break;
+	default:
+	    break;
 	}
 }
 void Printer::print( Kind kind, unsigned int lid, char state ) {
@@ -219,6 +225,8 @@ void Printer::print( Kind kind, unsigned int lid, char state ) {
 				finish();
 			courierBuffer[lid] = convert(state);
 			break;
+	default:
+	    break;
 	}
 }
 void Printer::print( Kind kind, unsigned int lid, char state, int value1 ) {
@@ -241,6 +249,8 @@ void Printer::print( Kind kind, unsigned int lid, char state, int value1 ) {
 			courierBuffer[lid] = convert(state);
 			courierBuffer[lid] += convert(value1);
 			break;
+	default:
+	    break;
 	}
 }
 void Printer::print( Kind kind, unsigned int lid, char state, int value1, int value2 ) {
@@ -269,6 +279,8 @@ void Printer::print( Kind kind, unsigned int lid, char state, int value1, int va
 			courierBuffer[lid] += ",";
 			courierBuffer[lid] += convert(value2);
 			break;
+	default:
+	    break;
 	}
 }
 
@@ -290,13 +302,13 @@ void Printer::finish() {
 	nameServer = "...";
 	truck = "...";
 	plant = "...";
-	for (int i = 0 ; i < numStudents ; i++) {
+	for (unsigned int i = 0 ; i < numStudents ; i++) {
 		studentBuffer[i] = "...";
 	}
-	for (int i = 0 ; i < numVendingMachines ; i++) {
+	for (unsigned int i = 0 ; i < numVendingMachines ; i++) {
 		vendingMachineBuffer[i] = "...";
 	}
-	for (int i = 0 ; i < numCouriers ; i++) {
+	for (unsigned int i = 0 ; i < numCouriers ; i++) {
 		courierBuffer[i] = "...";
 	}
 }

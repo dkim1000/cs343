@@ -7,7 +7,7 @@ VendingMachine::VendingMachine( Printer &prt, NameServer &nameServer, unsigned i
     : printer(prt), nameServer(nameServer), id(id), sodaCost(sodaCost), maxStockPerFlavour(maxStockPerFlavour) {
     
     for ( unsigned int i = 0; i < NUM_FLAVOURS; i += 1 ) {
-	stock[i] = 0;
+	stocks[i] = 0;
     }
     isRestocking = false;
 
@@ -19,11 +19,11 @@ void VendingMachine::buy( Flavours flavour, WATCard &card ) {
     // TODO: need a flag variable to correctly throw these exceptions..?
 
     if ( stocks[flavour] <= 0 ) {        // No stock remaining for the flavour
-	throw Stock;
+	throw Stock();
     }  
 
     if ( card.getBalance() < sodaCost ) {// Not enough fund on the watcadr
-	throw Funds;
+	throw Funds();
     }
 
     card.withdraw( sodaCost );           // deduct the cost from watcard balance

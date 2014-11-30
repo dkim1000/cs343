@@ -24,14 +24,14 @@ void Truck::main() {
     while ( 1 ) {
 	yield( mprng ( 1, 10 ) );        // COFFEE TIME
 	
-	// get shipment and check if the plant's closed (true)
-        if ( plant.getShipment( cargo ) ) break;
+	// get shipment
+        plant.getShipment( cargo );
 
 	unsigned int numTotalSoda = 0;   // number of all sodas on cargo
 	for ( unsigned int i = 0; i < NUM_FLAVOURS; i += 1 ) {
 	    numTotalSoda += cargo[i];
 	}
-	printer.print( Printer::Truck, 'P', total );
+	printer.print( Printer::Truck, 'P', numTotalSoda );
 	
         // Choose a vending machine and restock it
 	for ( unsigned int i = 0; i < numVendingMachines && numTotalSoda > 0; i += 1 ) {

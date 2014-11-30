@@ -1,4 +1,5 @@
 #include "NameServer.h"
+#include "VendingMachine.h"
 
 NameServer::NameServer( Printer &prt, unsigned int numVendingMachines, unsigned int numStudents ) : 
 printer(prt), numVendingMachines(numVendingMachines), numStudents(numStudents) {
@@ -33,4 +34,19 @@ VendingMachine *NameServer::getMachine( unsigned int id ) {
 
 VendingMachine **NameServer::getMachineList() {
 	return machines;
+}
+
+
+void NameServer::main() {
+    printer.print( Printer::NameServer, 'S' );
+    while ( 1 ) {
+	_Accept( ~NameServer ) {
+	    break;
+	} or _When ( numRegisteredMachines < numVendingMachines ) _Accept( VMregister ) {
+	} or _When ( numRegisteredMachines == numVendingMachines ) _Accept( getMachine, getMachineList ) {
+	}
+    }
+
+    printer.print( Printer::NameServer, 'F' );
+
 }

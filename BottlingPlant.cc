@@ -1,5 +1,4 @@
 #include "BottlingPlant.h"
-#include "Truck.h"
 #include "MPRNG.h"
 
 /* Public */
@@ -33,7 +32,7 @@ void BottlingPlant::getShipment( unsigned int cargo[] ) {
 	// TODO: call uRendezVousAdaptor routine
 	// TODO: apparently need a flag variable to throw on right stack...?
 	// TODO: how to check if cargo changed?
-	throw Shutdown;
+	throw Shutdown();
     }
 
     for ( unsigned int i = 0; i < NUM_FLAVOURS; i += 1 ) {
@@ -42,8 +41,6 @@ void BottlingPlant::getShipment( unsigned int cargo[] ) {
     }
     
     printer.print( Printer::BottlingPlant, 'P' );
-
-    return false;
 } // getShipment
 
 
@@ -52,7 +49,7 @@ void BottlingPlant::getShipment( unsigned int cargo[] ) {
 // produces soda and stores them in produced array
 void BottlingPlant::produce() {
     unsigned int total = 0;                           // keep track of # sodas produced
-    for ( unsigned int = 0; i < NUM_FLAVOURS; i += 1 ) {
+    for ( unsigned int i = 0; i < NUM_FLAVOURS; i += 1 ) {
 	produced[i] = mprng( maxShippedPerFlavour );  // produce random amount
 	total += produced[i];
     }
@@ -62,7 +59,7 @@ void BottlingPlant::produce() {
 
 
 void BottlingPlant::main() {
-    Printer.print( Printer::BottlingPlant, 'S' );
+    printer.print( Printer::BottlingPlant, 'S' );
 
     produce();
 

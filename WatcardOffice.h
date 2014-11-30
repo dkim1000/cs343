@@ -1,3 +1,6 @@
+#ifndef WATCARD_OFFICE_H
+#define WATCARD_OFFICE_H
+
 #include "Watcard.h"
 #include "Printer.h"
 #include "Bank.h"
@@ -54,3 +57,5 @@ public:
   WATCard::FWATCard transfer( unsigned int sid, unsigned int amount, WATCard *card );
   Job *requestWork();
 };
+
+#endif // WATCARD_OFFICE_H

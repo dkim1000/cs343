@@ -3,6 +3,7 @@
 
 #include "NameServer.h"
 #include "Printer.h"
+#include "Truck.h"
 #include "config.h"   // NUM_FLAVOURS
 
 _Task BottlingPlant {

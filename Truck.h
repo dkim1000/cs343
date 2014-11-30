@@ -5,6 +5,8 @@
 #include "Printer.h"
 #include "config.h"    // NUM_FLAVOURS
 
+_Task BottlingPlant;
+
 _Task Truck {
     Printer &printer;
     NameServer &nameServer;
