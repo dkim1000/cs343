@@ -21,12 +21,14 @@ void VendingMachine::buy( Flavours flavour, WATCard &card ) {
     if ( stocks[flavour] <= 0 ) {        // No stock remaining for the flavour
         throwStock = true;
 	uRendezvousAcceptor();
+	throw Stock();
 	return;
     }  
 
     if ( card.getBalance() < sodaCost ) {// Not enough fund on the watcadr
 	throwFunds = true;
 	uRendezvousAcceptor();
+	throw Funds();
 	return;
     }
 
@@ -68,9 +70,9 @@ void VendingMachine::main() {
 	    break;
 	} or _When ( !isRestocking ) _Accept ( buy, inventory ) {
 	    if ( throwStock ) {
-		throw Stock();
+		//		throw Stock();
 	    } else if ( throwFunds ) {
-		throw Funds();
+		//throw Funds();
 	    }
 	    printer.print( Printer::Vending, id, 'r' );
 	} or _When ( isRestocking ) _Accept ( restocked ) {

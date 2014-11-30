@@ -31,7 +31,8 @@ BottlingPlant::~BottlingPlant() {
 void BottlingPlant::getShipment( unsigned int cargo[] ) {
     if ( isClosing ) {
 	uRendezvousAcceptor();
-        return;
+	throw Shutdown();
+	return;
     }
 
     for ( unsigned int i = 0; i < NUM_FLAVOURS; i += 1 ) {
@@ -66,7 +67,6 @@ void BottlingPlant::main() {
 	_Accept( ~BottlingPlant ) {
 	    isClosing = true;
 	} or _Accept( getShipment ) {
-	    if ( isClosing ) throw Shutdown();
 	    yield( timeBetweenShipments );
 	    produce();
 	}
