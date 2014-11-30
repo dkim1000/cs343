@@ -38,7 +38,7 @@ _Task WATCardOffice {
   public:
     enum State {STARTING = 'S', START_XFER = 't', END_XFER = 'T', FINISHED = 'F'};
 
-    Courier(unsigned int id, WATCardOffice *office, Printer &prt) : id(id), office(office), printer(prt) {}
+    Courier(unsigned int id, WATCardOffice *office, Printer &prt);
   };
 
   Printer &printer;
