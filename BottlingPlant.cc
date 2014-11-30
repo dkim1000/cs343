@@ -1,6 +1,6 @@
 #include "BottlingPlant.h"
 #include "Truck.h"
-#include "mprng.h"
+#include "MPRNG.h"
 
 /* Public */
 

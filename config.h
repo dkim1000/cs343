@@ -1,7 +1,8 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define NUM_FLAVOURS  3
+#define NUM_FLAVOURS            3
+#define WATCARD_INITIAL_BALANCE 5
 
 struct ConfigParms {
     unsigned int sodaCost;                 // MSRP per bottle
