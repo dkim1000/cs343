@@ -15,6 +15,11 @@ Printer::Printer( unsigned int numStudents, unsigned int numVendingMachines, uns
 																								numVendingMachines(numVendingMachines),
 																								numCouriers(numCouriers)
 {
+	parent = "";
+	watcard = "";
+	nameServer = "";
+	truck = "";
+	plant = "";
 	studentBuffer = new string[numStudents];
 	vendingMachineBuffer = new string[numVendingMachines];
 	courierBuffer = new string[numCouriers];
@@ -60,14 +65,24 @@ void Printer::flush() {
 	cout << plant << "\t";
   for (unsigned int i = 0 ; i < numStudents ; i++) {
     cout << studentBuffer[i]<<"\t";
+    studentBuffer[i] = "";
   }
   for (unsigned int i = 0 ; i < numVendingMachines ; i++) {
   	cout << vendingMachineBuffer[i]<<"\t";
+  	vendingMachineBuffer[i] = "";
   }
   for (unsigned int i = 0 ; i < numCouriers ; i++) {
   	cout << courierBuffer[i]<<"\t";
+  	courierBuffer[i] = "";
   }
   cout << endl;
+
+  parent = "";
+  watcard = "";
+  nameServer = "";
+  truck = "";
+  plant = "";
+
 }	
 
 void Printer::print( Kind kind, char state ) {
@@ -304,6 +319,7 @@ string Printer::convert(char c) {
 }
 
 void Printer::finish() {
+	flush();
 	parent = "...";
 	watcard = "...";
 	nameServer = "...";

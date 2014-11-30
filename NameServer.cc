@@ -40,11 +40,11 @@ VendingMachine **NameServer::getMachineList() {
 void NameServer::main() {
     printer.print( Printer::NameServer, 'S' );
     while ( 1 ) {
-	_Accept( ~NameServer ) {
-	    break;
-	} or _When ( numRegisteredMachines < numVendingMachines ) _Accept( VMregister ) {
-	} or _When ( numRegisteredMachines == numVendingMachines ) _Accept( getMachine, getMachineList ) {
-	}
+		_Accept( ~NameServer ) {
+		    break;
+		} or _When ( numRegisteredMachines < numVendingMachines ) _Accept( VMregister ) {
+		} or _When ( numRegisteredMachines == numVendingMachines ) _Accept( getMachine, getMachineList ) {
+		}
     }
 
     printer.print( Printer::NameServer, 'F' );

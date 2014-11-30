@@ -7,6 +7,8 @@ using namespace std;
 >>>>>>> 87043bfa254cbca76ed3a2446f67b2aaaa41bddc
 
 WATCardOffice::WATCardOffice( Printer &prt, Bank &bank, unsigned int numCouriers ) : printer(prt), bank(bank), numCouriers(numCouriers) {
+	isDone = false;
+	job = NULL;
 	couriers = new Courier*[numCouriers];
 	for (unsigned int i = 0 ; i < numCouriers ; i++) {
 		couriers[i] = new Courier(i, this, printer);
