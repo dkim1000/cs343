@@ -1,5 +1,6 @@
 #include "BottlingPlant.h"
 #include "MPRNG.h"
+#include "uEHM.h"
 
 /* Public */
 
@@ -29,6 +30,7 @@ BottlingPlant::~BottlingPlant() {
 // returns true if plant closed, false otherwise
 void BottlingPlant::getShipment( unsigned int cargo[] ) {
     if ( isClosing ) {
+	uRendezvousAcceptor();
         return;
     }
 
@@ -62,11 +64,9 @@ void BottlingPlant::main() {
 
     while ( 1 ) {
 	_Accept( ~BottlingPlant ) {
-	    /*	    isClosing = true;
-		    break; */
-	    uRendezvousAcceptor();
-	    throw Shutdown();
+	    isClosing = true;
 	} or _Accept( getShipment ) {
+	    if ( isClosing ) throw Shutdown();
 	    yield( timeBetweenShipments );
 	    produce();
 	}

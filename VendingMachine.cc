@@ -1,5 +1,6 @@
 #include "VendingMachine.h"
 
+
 /* public */
 
 // Constructor
@@ -10,7 +11,6 @@ VendingMachine::VendingMachine( Printer &prt, NameServer &nameServer, unsigned i
 	stocks[i] = 0;
     }
     isRestocking = false;
-
     nameServer.VMregister(this);
 } // VendingMachine::VendingMachine
 
@@ -20,11 +20,13 @@ void VendingMachine::buy( Flavours flavour, WATCard &card ) {
 
     if ( stocks[flavour] <= 0 ) {        // No stock remaining for the flavour
         throwStock = true;
+	uRendezvousAcceptor();
 	return;
     }  
 
     if ( card.getBalance() < sodaCost ) {// Not enough fund on the watcadr
 	throwFunds = true;
+	uRendezvousAcceptor();
 	return;
     }
 
@@ -66,10 +68,8 @@ void VendingMachine::main() {
 	    break;
 	} or _When ( !isRestocking ) _Accept ( buy, inventory ) {
 	    if ( throwStock ) {
-		uRendezvousAcceptor();
 		throw Stock();
 	    } else if ( throwFunds ) {
-		uRendezvousAcceptor();
 		throw Funds();
 	    }
 	    printer.print( Printer::Vending, id, 'r' );
