@@ -15,18 +15,25 @@ Printer::Printer( unsigned int numStudents, unsigned int numVendingMachines, uns
 																								numVendingMachines(numVendingMachines),
 																								numCouriers(numCouriers)
 {
+	studentBuffer = new string[numStudents];
+	vendingMachineBuffer = new string[numVendingMachines];
+	courierBuffer = new string[numCouriers];
+
 	cout << "Parent" << "\t";
 	cout << "WATOff" << "\t";
 	cout << "Names" << "\t";
 	cout << "Truck" << "\t";
 	cout << "Plant" << "\t";
 	for (unsigned int i = 0 ; i < numStudents ; i++) {
+		studentBuffer[i] = "";
 		cout << "Stud" << i << "\t";
 	}
 	for (unsigned int i = 0 ; i < numVendingMachines ; i++) {
+		vendingMachineBuffer[i] = "";
 		cout << "Mach" << i << "\t";
 	}
 	for (unsigned int i = 0 ; i < numCouriers ; i++) {
+		courierBuffer[i] = "";
 		cout << "Cour" << i << "\t";
 	}
 	cout << endl;
