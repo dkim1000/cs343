@@ -32,6 +32,7 @@ void BottlingPlant::getShipment( unsigned int cargo[] ) {
 	// TODO: call uRendezVousAdaptor routine
 	// TODO: apparently need a flag variable to throw on right stack...?
 	// TODO: how to check if cargo changed?
+	uRendezvousAcceptor();
 	throw Shutdown();
     }
 

@@ -1,5 +1,6 @@
 #include "WatcardOffice.h"
 #include "MPRNG.h"
+#include <iostream>
 
 WATCardOffice::WATCardOffice( Printer &prt, Bank &bank, unsigned int numCouriers ) : printer(prt), bank(bank), numCouriers(numCouriers) {
 	couriers = new Courier*[numCouriers];
@@ -60,6 +61,7 @@ WATCardOffice::Job * WATCardOffice::requestWork() {
 
 void WATCardOffice::Courier::main() {
 	printer.print(Printer::Courier, id, 'S');
+	std::cout << "hi";
 
 	while (1) {
 		Job *job = office->requestWork();
@@ -85,6 +87,7 @@ void WATCardOffice::Courier::main() {
 			job->result.delivery(args.card);
 		}
 
+		printer.print( Printer::Courier, 'W' );
 		delete job;
 	}
 	printer.print(Printer::Courier, id, 'F');
