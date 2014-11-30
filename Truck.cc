@@ -25,7 +25,11 @@ void Truck::main() {
 	yield( mprng ( 1, 10 ) );        // COFFEE TIME
 	
 	// get shipment
-        plant.getShipment( cargo );
+	try {
+	    plant.getShipment( cargo );
+	} catch ( BottlingPlant::Shutdown ) {
+	    break;
+	}
 
 	unsigned int numTotalSoda = 0;   // number of all sodas on cargo
 	for ( unsigned int i = 0; i < NUM_FLAVOURS; i += 1 ) {
