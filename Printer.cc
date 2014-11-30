@@ -190,8 +190,8 @@ void Printer::print( Kind kind, char state, int value1, int value2 ) {
 			}
 			watcard = convert(state);
 			watcard += convert(value1);
-			parent += ",";
-			parent += convert(value2);
+			watcard += ",";
+			watcard += convert(value2);
 			break;
 		case NameServer:
 			if (nameServer != "") {
