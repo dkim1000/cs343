@@ -72,15 +72,15 @@ void uMain::main() {
     }
        
 
-    // delete 
+    for ( unsigned int i = 0; i < parms.numStudents; i += 1 ) {
+	delete students[i];
+    }
+
     delete bottlingPlant;
 
     for ( unsigned int i = 0; i < parms.numVendingMachines; i += 1 ) {
 	delete vendingMachines[i];
     }
 
-    for ( unsigned int i = 0; i < parms.numStudents; i += 1 ) {
-	delete students[i];
-    }
 			 
 } // uMain::main()
