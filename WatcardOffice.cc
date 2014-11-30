@@ -8,6 +8,10 @@ WATCardOffice::WATCardOffice( Printer &prt, Bank &bank, unsigned int numCouriers
 	}
 }
 
+WATCardOffice::Courier::Courier(unsigned int id, WATCardOffice *office, Printer &prt) : id(id), office(office), printer(prt) {
+
+}
+
 WATCardOffice::~WATCardOffice() {
 	delete[] job;
 	for (unsigned int i = 0 ; i < numCouriers ; i++) {
