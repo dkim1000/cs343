@@ -1,6 +1,10 @@
 #include "WatcardOffice.h"
 #include "MPRNG.h"
 #include <iostream>
+<<<<<<< HEAD
+=======
+using namespace std;
+>>>>>>> 87043bfa254cbca76ed3a2446f67b2aaaa41bddc
 
 WATCardOffice::WATCardOffice( Printer &prt, Bank &bank, unsigned int numCouriers ) : printer(prt), bank(bank), numCouriers(numCouriers) {
 	couriers = new Courier*[numCouriers];
@@ -65,15 +69,17 @@ WATCardOffice::Job * WATCardOffice::requestWork() {
 
 void WATCardOffice::Courier::main() {
 	printer.print(Printer::Courier, id, 'S');
+<<<<<<< HEAD
 	std::cout << "hi";
 
+=======
+>>>>>>> 87043bfa254cbca76ed3a2446f67b2aaaa41bddc
 	while (1) {
 		Job *job = office->requestWork();
 
 		if (job == NULL) break;
 
 		Args args = job->args;
-
 		//possiblility to drop the card
 		bool loseCard = (mprng(5) == 0);
 		if (loseCard) {
@@ -87,7 +93,6 @@ void WATCardOffice::Courier::main() {
 			if (args.card == NULL) args.card = new WATCard();
 			args.card->deposit(args.amount);
 			printer.print(Printer::Courier, id, 'T', args.sid, args.amount);
-
 			job->result.delivery(args.card);
 		}
 

@@ -19,11 +19,13 @@ void VendingMachine::buy( Flavours flavour, WATCard &card ) {
     // TODO: need a flag variable to correctly throw these exceptions..?
 
     if ( stocks[flavour] <= 0 ) {        // No stock remaining for the flavour
-	throw Stock();
+        throwStock = true;
+	return;
     }  
 
     if ( card.getBalance() < sodaCost ) {// Not enough fund on the watcadr
-	throw Funds();
+	throwFunds = true;
+	return;
     }
 
     card.withdraw( sodaCost );           // deduct the cost from watcard balance
@@ -63,6 +65,13 @@ void VendingMachine::main() {
 	_Accept( ~VendingMachine ) {
 	    break;
 	} or _When ( !isRestocking ) _Accept ( buy, inventory ) {
+	    if ( throwStock ) {
+		uRendezvousAcceptor();
+		throw Stock();
+	    } else if ( throwFunds ) {
+		uRendezvousAcceptor();
+		throw Funds();
+	    }
 	    printer.print( Printer::Vending, id, 'r' );
 	} or _When ( isRestocking ) _Accept ( restocked ) {
 	    printer.print( Printer::Vending, id, 'R' );

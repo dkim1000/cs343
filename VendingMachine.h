@@ -15,6 +15,7 @@ _Task VendingMachine {
     unsigned int maxStockPerFlavour;
     unsigned int stocks[ NUM_FLAVOURS ];  
     bool isRestocking;
+    bool throwFunds, throwStock;
 
     void main();
 

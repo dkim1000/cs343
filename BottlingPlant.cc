@@ -29,11 +29,7 @@ BottlingPlant::~BottlingPlant() {
 // returns true if plant closed, false otherwise
 void BottlingPlant::getShipment( unsigned int cargo[] ) {
     if ( isClosing ) {
-	// TODO: call uRendezVousAdaptor routine
-	// TODO: apparently need a flag variable to throw on right stack...?
-	// TODO: how to check if cargo changed?
-	uRendezvousAcceptor();
-	throw Shutdown();
+        return;
     }
 
     for ( unsigned int i = 0; i < NUM_FLAVOURS; i += 1 ) {
@@ -66,8 +62,10 @@ void BottlingPlant::main() {
 
     while ( 1 ) {
 	_Accept( ~BottlingPlant ) {
-	    isClosing = true;
-	    break;
+	    /*	    isClosing = true;
+		    break; */
+	    uRendezvousAcceptor();
+	    throw Shutdown();
 	} or _Accept( getShipment ) {
 	    yield( timeBetweenShipments );
 	    produce();
