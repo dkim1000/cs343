@@ -60,7 +60,7 @@ void BottlingPlant::produce() {
 
     printer.print( Printer::BottlingPlant, 'G', total );
     ready = true;
-+} // produce
+} // produce
 
 
 void BottlingPlant::main() {
