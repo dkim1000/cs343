@@ -1,0 +1,251 @@
+Script started on Wed 19 Nov 2014 06:27:54 PM EST
+dhdkim@ubuntu1204-002:~/cs343/realA5$ make vote TYPE=EXT
+echo "IMPLTYPE=EXT" > ImplType
+sleep 1
+u++					 -w -g -Wall -Wno-unused-label -MMD -O2 -multi -D"IMPLTYPE_EXT" -D"TABLETYPE_"   -c -o q2tallyVotesEXT.o q2tallyVotesEXT.cc
+uC++ Version 6.0.0 (multiple processor) (debug) (no yield) (no verify) (no profile)
+u++					 -w -g -Wall -Wno-unused-label -MMD -O2 -multi -D"IMPLTYPE_EXT" -D"TABLETYPE_"   -c -o q2.o q2.cc
+uC++ Version 6.0.0 (multiple processor) (debug) (no yield) (no verify) (no profile)
+u++					 -w -g -Wall -Wno-unused-label -MMD -O2 -multi -D"IMPLTYPE_EXT" -D"TABLETYPE_"   -c -o q2printervoter.o q2printervoter.cc
+uC++ Version 6.0.0 (multiple processor) (debug) (no yield) (no verify) (no profile)
+u++					 -w -g -Wall -Wno-unused-label -MMD -O2 -multi -D"IMPLTYPE_EXT" -D"TABLETYPE_" q2tallyVotesEXT.o q2.o q2printervoter.o -o vote
+uC++ Version 6.0.0 (multiple processor) (debug) (no yield) (no verify) (no profile)
+dhdkim@ubuntu1204-002:~/cs343/realA5$ echo "testing negative seed"
+testing negative seed
+dhdkim@ubuntu1204-002:~/cs343/realA5$ ./vote 1 1 -1
+Usage: Voters (> 0 & V mod G = 0, default 6) Group (> 0 & odd, default 3)  Seed (> 0)
+dhdkim@ubuntu1204-002:~/cs343/realA5$ echo "testing G > V"
+testing G > B
+dhdkim@ubuntu1204-002:~/cs343/realA5$ ./vote 1 3
+Usage: Voters (> 0 & V mod G = 0, default 6) Group (> 0 & odd, default 3)  Seed (> 0)
+dhdkim@ubuntu1204-002:~/cs343/realA5$ echo "testing G not divisible by V"
+testing G not divisible by V
+dhdkim@ubuntu1204-002:~/cs343/realA5$ ./vote 1 3
+Usage: Voters (> 0 & V mod G = 0, default 6) Group (> 0 & odd, default 3)  Seed (> 0)
+dhdkim@ubuntu1204-002:~/cs343/realA5$ echo "testing too much arguments"
+testing too much arguments
+dhdkim@ubuntu1204-002:~/cs343/realA5$ ./vote 1 1 1 1 1 1
+Usage: Voters (> 0 & V mod G = 0, default 6) Group (> 0 & odd, default 3)  Seed (> 0)
+dhdkim@ubuntu1204-002:~/cs343/realA5$ ./vote 3 1
+Voter0	Voter1	Voter2
+=======	=======	=======
+S	S	S
+		V 0
+		C
+...	...	F 0
+V 0		
+C		
+F 0	...	...
+	V 0	
+	C	
+...	F 0	...
+=================
+All tours starteddhdkim@ubuntu1204-002:~/cs343/realA5$ ./vote 3 3
+Voter0	Voter1	Voter2
+=======	=======	=======
+S	S	S
+		V 0
+	V 1	B 1
+V 1	B 2	
+C		
+F 1	...	...
+	U 1	
+...	F 1	...
+		U 0
+...	...	F 1
+=================
+All tours starteddhdkim@ubuntu1204-002:~/cs343/realA5$ make vote TYPE=INT
+rm -f ImplType
+touch q2tallyVotes.h
+make vote TYPE="INT"
+make[1]: Entering directory `/u7/dhdkim/cs343/realA5'
+echo "IMPLTYPE=INT" > ImplType
+sleep 1
+make[1]: Leaving directory `/u7/dhdkim/cs343/realA5'
+make[1]: Entering directory `/u7/dhdkim/cs343/realA5'
+u++					 -w -g -Wall -Wno-unused-label -MMD -O2 -multi -D"IMPLTYPE_INT" -D"TABLETYPE_"   -c -o q2tallyVotesINT.o q2tallyVotesINT.cc
+uC++ Version 6.0.0 (multiple processor) (debug) (no yield) (no verify) (no profile)
+u++					 -w -g -Wall -Wno-unused-label -MMD -O2 -multi -D"IMPLTYPE_INT" -D"TABLETYPE_"   -c -o q2.o q2.cc
+uC++ Version 6.0.0 (multiple processor) (debug) (no yield) (no verify) (no profile)
+u++					 -w -g -Wall -Wno-unused-label -MMD -O2 -multi -D"IMPLTYPE_INT" -D"TABLETYPE_"   -c -o q2printervoter.o q2printervoter.cc
+uC++ Version 6.0.0 (multiple processor) (debug) (no yield) (no verify) (no profile)
+u++					 -w -g -Wall -Wno-unused-label -MMD -O2 -multi -D"IMPLTYPE_INT" -D"TABLETYPE_" q2tallyVotesINT.o q2.o q2printervoter.o -o vote
+uC++ Version 6.0.0 (multiple processor) (debug) (no yield) (no verify) (no profile)
+make[1]: Leaving directory `/u7/dhdkim/cs343/realA5'
+dhdkim@ubuntu1204-002:~/cs343/realA5$ ./vote 3 1
+Voter0	Voter1	Voter2
+=======	=======	=======
+S	S	S
+V 1		
+C		
+F 1	...	...
+		V 1
+		C
+...	...	F 1
+	V 1	
+	C	
+...	F 1	...
+=================
+All tours starteddhdkim@ubuntu1204-002:~/cs343/realA5$ ./vote 3 3
+Voter0	Voter1	Voter2
+=======	=======	=======
+S	S	S
+V 1		
+B 1		V 0
+	V 1	B 2
+	C	
+...	F 1	...
+U 1		
+F 1	...	...
+		U 0
+...	...	F 1
+=================
+All tours starteddhdkim@ubuntu1204-002:~/cs343/realA5$ make vote TYPE=INTB
+rm -f ImplType
+touch q2tallyVotes.h
+make vote TYPE="INTB"
+make[1]: Entering directory `/u7/dhdkim/cs343/realA5'
+echo "IMPLTYPE=INTB" > ImplType
+sleep 1
+make[1]: Leaving directory `/u7/dhdkim/cs343/realA5'
+make[1]: Entering directory `/u7/dhdkim/cs343/realA5'
+u++					 -w -g -Wall -Wno-unused-label -MMD -O2 -multi -D"IMPLTYPE_INTB" -D"TABLETYPE_"   -c -o q2tallyVotesINTB.o q2tallyVotesINTB.cc
+uC++ Version 6.0.0 (multiple processor) (debug) (no yield) (no verify) (no profile)
+./votu++					 -w -g -Wall -Wno-unused-label -MMD -O2 -multi -D"IMPLTYPE_INTB" -D"TABLETYPE_"   -c -o q2.o q2.cc
+uC++ Version 6.0.0 (multiple processor) (debug) (no yield) (no verify) (no profile)
+eu++					 -w -g -Wall -Wno-unused-label -MMD -O2 -multi -D"IMPLTYPE_INTB" -D"TABLETYPE_"   -c -o q2printervoter.o q2printervoter.cc
+uC++ Version 6.0.0 (multiple processor) (debug) (no yield) (no verify) (no profile)
+u++					 -w -g -Wall -Wno-unused-label -MMD -O2 -multi -D"IMPLTYPE_INTB" -D"TABLETYPE_" q2tallyVotesINTB.o q2.o q2printervoter.o -o vote
+uC++ Version 6.0.0 (multiple processor) (debug) (no yield) (no verify) (no profile)
+make[1]: Leaving directory `/u7/dhdkim/cs343/realA5'
+dhdkim@ubuntu1204-002:~/cs343/realA5$ ./vote 3 1
+Voter0	Voter1	Voter2
+=======	=======	=======
+S	S	S
+V 1		
+C		
+F 1	...	...
+	V 0	
+	C	
+...	F 0	...
+		V 1
+		C
+...	...	F 1
+=================
+All tours starteddhdkim@ubuntu1204-002:~/cs343/realA5$ ./vote 3 3
+Voter0	Voter1	Voter2
+=======	=======	=======
+S	S	S
+	V 1	
+V 1	B 1	
+B 2		V 1
+		C
+...	...	F 1
+U 1		
+F 1	...	...
+	U 0	
+...	F 1	...
+=================
+All tours starteddhdkim@ubuntu1204-002:~/cs343/realA5$ make vote TYPE=AUTO
+rm -f ImplType
+touch q2tallyVotes.h
+make vote TYPE="AUTO"
+make[1]: Entering directory `/u7/dhdkim/cs343/realA5'
+echo "IMPLTYPE=AUTO" > ImplType
+sleep 1
+./vote make[1]: Leaving directory `/u7/dhdkim/cs343/realA5'
+make[1]: Entering directory `/u7/dhdkim/cs343/realA5'
+u++					 -w -g -Wall -Wno-unused-label -MMD -O2 -multi -D"IMPLTYPE_AUTO" -D"TABLETYPE_"   -c -o q2tallyVotesAUTO.o q2tallyVotesAUTO.cc
+uC++ Version 6.0.0 (multiple processor) (debug) (no yield) (no verify) (no profile)
+3 1u++					 -w -g -Wall -Wno-unused-label -MMD -O2 -multi -D"IMPLTYPE_AUTO" -D"TABLETYPE_"   -c -o q2.o q2.cc
+uC++ Version 6.0.0 (multiple processor) (debug) (no yield) (no verify) (no profile)
+u++					 -w -g -Wall -Wno-unused-label -MMD -O2 -multi -D"IMPLTYPE_AUTO" -D"TABLETYPE_"   -c -o q2printervoter.o q2printervoter.cc
+uC++ Version 6.0.0 (multiple processor) (debug) (no yield) (no verify) (no profile)
+u++					 -w -g -Wall -Wno-unused-label -MMD -O2 -multi -D"IMPLTYPE_AUTO" -D"TABLETYPE_" q2tallyVotesAUTO.o q2.o q2printervoter.o -o vote
+uC++ Version 6.0.0 (multiple processor) (debug) (no yield) (no verify) (no profile)
+make[1]: Leaving directory `/u7/dhdkim/cs343/realA5'
+dhdkim@ubuntu1204-002:~/cs343/realA5$ ./vote 3 1
+Voter0	Voter1	Voter2
+=======	=======	=======
+S	S	S
+V 0		
+C		
+F 0	...	...
+		V 0
+		C
+...	...	F 0
+	V 0	
+	C	
+...	F 0	...
+=================
+All tours starteddhdkim@ubuntu1204-002:~/cs343/realA5$ ./vote 3 3
+Voter0	Voter1	Voter2
+=======	=======	=======
+S	S	S
+	V 0	
+	B 1	V 0
+V 1		B 2
+C		
+F 0	...	...
+	U 1	
+...	F 0	...
+		U 0
+...	...	F 0
+=================
+All tours starteddhdkim@ubuntu1204-002:~/cs343/realA5$ make vote TYPE=TASK
+rm -f ImplType
+touch q2tallyVotes.h
+make vote TYPE="TASK"
+make[1]: Entering directory `/u7/dhdkim/cs343/realA5'
+echo "IMPLTYPE=TASK" > ImplType
+sleep 1
+.make[1]: Leaving directory `/u7/dhdkim/cs343/realA5'
+make[1]: Entering directory `/u7/dhdkim/cs343/realA5'
+u++					 -w -g -Wall -Wno-unused-label -MMD -O2 -multi -D"IMPLTYPE_TASK" -D"TABLETYPE_"   -c -o q2tallyVotesTASK.o q2tallyVotesTASK.cc
+uC++ Version 6.0.0 (multiple processor) (debug) (no yield) (no verify) (no profile)
+/vote 3 1u++					 -w -g -Wall -Wno-unused-label -MMD -O2 -multi -D"IMPLTYPE_TASK" -D"TABLETYPE_"   -c -o q2.o q2.cc
+uC++ Version 6.0.0 (multiple processor) (debug) (no yield) (no verify) (no profile)
+u++					 -w -g -Wall -Wno-unused-label -MMD -O2 -multi -D"IMPLTYPE_TASK" -D"TABLETYPE_"   -c -o q2printervoter.o q2printervoter.cc
+uC++ Version 6.0.0 (multiple processor) (debug) (no yield) (no verify) (no profile)
+u++					 -w -g -Wall -Wno-unused-label -MMD -O2 -multi -D"IMPLTYPE_TASK" -D"TABLETYPE_" q2tallyVotesTASK.o q2.o q2printervoter.o -o vote
+uC++ Version 6.0.0 (multiple processor) (debug) (no yield) (no verify) (no profile)
+make[1]: Leaving directory `/u7/dhdkim/cs343/realA5'
+dhdkim@ubuntu1204-002:~/cs343/realA5$ ./vote 3 1
+Voter0	Voter1	Voter2
+=======	=======	=======
+S	S	S
+V 0		
+B 1		
+C		
+U 0		
+F 0	...	...
+	V 0	
+	B 1	
+	C	
+	U 0	
+...	F 0	...
+		V 0
+		B 1
+		C
+		U 0
+...	...	F 0
+=================
+All tours starteddhdkim@ubuntu1204-002:~/cs343/realA5$ ./vote 3 3
+Voter0	Voter1	Voter2
+=======	=======	=======
+S	S	S
+		V 0
+	V 0	B 1
+V 0	B 2	
+B 3		
+C		U 2
+...	...	F 0
+	U 1	
+...	F 0	...
+U 0		
+F 0	...	...
+=================
+All tours starteddhdkim@ubuntu1204-002:~/cs343/realA5$ exit
+exit
+
+Script done on Wed 19 Nov 2014 06:31:14 PM EST
